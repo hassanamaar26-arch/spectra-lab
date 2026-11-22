@@ -45,9 +45,9 @@ export interface Block {
   widget?: WidgetId;
 }
 
-export type WidgetId = 'shifts';
+export type WidgetId = 'shifts' | 'irfactors';
 
-export type CalcId = 'tA' | 'beer' | 'emr' | 'ihd' | 'nrule' | 'nplus1' | 'iso';
+export type CalcId = 'tA' | 'beer' | 'emr' | 'ihd' | 'nrule' | 'nplus1' | 'iso' | 'dof' | 'hooke';
 
 export interface Lesson {
   id: string;

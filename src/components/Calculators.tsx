@@ -2,6 +2,10 @@ import { useState, type ReactNode } from 'react';
 import type { CalcId } from '../types';
 import {
   absFromPercentT,
+  ATOM_MASS,
+  degreesOfFreedom,
+  FORCE,
+  hooke,
   emr,
   fmt,
   ihd,
@@ -172,7 +176,75 @@ function Iso() {
   );
 }
 
-const REGISTRY: Record<CalcId, () => JSX.Element> = { tA: TA, beer: Beer, emr: Emr, ihd: Ihd, nrule: NRule, nplus1: NPlus1, iso: Iso };
+function Dof() {
+  const [n, setN] = useState('3');
+  const [shape, setShape] = useState<'nonlinear' | 'linear'>('nonlinear');
+  const out = safe(() => {
+    const k = num(n);
+    const d = degreesOfFreedom(k ?? NaN, shape === 'linear');
+    return [
+      `Total      3n = ${d.total}`,
+      `Translation    = ${d.translation}`,
+      `Rotation       = ${d.rotation}`,
+      `Vibrations     = ${shape === 'linear' ? '3n − 5' : '3n − 6'} = ${d.vibrations}`,
+    ].join('\n');
+  });
+  return (
+    <Card title="درجات الحرية (3n − 6 / 3n − 5)" hint="H₂O: n = 3 منحني ← 3. CO₂: n = 3 خطي ← 4" out={out}>
+      <Field id="dof-n" label="n (عدد الذرات)" value={n} onChange={setN} />
+      <label htmlFor="dof-s">
+        <span>شكل الجزيء</span>
+        <select id="dof-s" value={shape} onChange={(e) => setShape(e.target.value as 'nonlinear' | 'linear')}>
+          <option value="nonlinear">Nonlinear (bent)</option>
+          <option value="linear">Linear</option>
+        </select>
+      </label>
+    </Card>
+  );
+}
+
+const BONDS: { id: string; a: string; b: string; order: 1 | 2 | 3; obs: string }[] = [
+  { id: 'C-H', a: 'C', b: 'H', order: 1, obs: '~2850–3000' },
+  { id: 'C-D', a: 'C', b: 'D', order: 1, obs: '~2100–2200' },
+  { id: 'O-H', a: 'O', b: 'H', order: 1, obs: '~3200–3600' },
+  { id: 'N-H', a: 'N', b: 'H', order: 1, obs: '~3300–3500' },
+  { id: 'C-C', a: 'C', b: 'C', order: 1, obs: '~1000–1200' },
+  { id: 'C-O', a: 'C', b: 'O', order: 1, obs: '~1000–1300' },
+  { id: 'C=C', a: 'C', b: 'C', order: 2, obs: '~1620–1680' },
+  { id: 'C=O', a: 'C', b: 'O', order: 2, obs: '~1700–1750' },
+  { id: 'C≡C', a: 'C', b: 'C', order: 3, obs: '~2100–2260' },
+  { id: 'C≡N', a: 'C', b: 'N', order: 3, obs: '~2210–2260' },
+];
+
+function Hooke() {
+  const [id, setId] = useState('C=O');
+  const b = BONDS.find((x) => x.id === id) ?? BONDS[0];
+  const out = safe(() => {
+    const r = hooke(ATOM_MASS[b.a], ATOM_MASS[b.b], FORCE[b.order]);
+    return [
+      `μ  = (${b.a}·${b.b})/(${b.a}+${b.b}) = ${fmt(r.mu)} amu`,
+      `f  = ${FORCE[b.order] / 1e5} × 10⁵ dyne/cm`,
+      `ν̄  ≈ ${Math.round(r.wavenumber)} cm⁻¹  (Hooke)`,
+      `observed ${b.obs} cm⁻¹  [Extra]`,
+    ].join('\n');
+  });
+  return (
+    <Card title="قانون Hooke التقريبي" hint="ثوابت القوة من السلايد 53. الفرق عن القيمة الحقيقية سببه بيئة الجزيء" out={out}>
+      <label htmlFor="hk-b">
+        <span>الآصرة</span>
+        <select id="hk-b" value={id} onChange={(e) => setId(e.target.value)}>
+          {BONDS.map((x) => (
+            <option key={x.id} value={x.id}>
+              {x.id}
+            </option>
+          ))}
+        </select>
+      </label>
+    </Card>
+  );
+}
+
+const REGISTRY: Record<CalcId, () => JSX.Element> = { tA: TA, beer: Beer, emr: Emr, ihd: Ihd, nrule: NRule, nplus1: NPlus1, iso: Iso, dof: Dof, hooke: Hooke };
 
 export function Calculators({ ids }: { ids: CalcId[] }) {
   return (

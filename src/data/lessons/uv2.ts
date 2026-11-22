@@ -132,17 +132,17 @@ export const uv2: Lesson = {
       id: 'red',
       slides: [28],
       title: 'Bathochromic shift (Red shift)',
-      en: 'When the absorption maximum (λmax) of a compound shifts to longer wavelength, it is known as bathochromic shift or red shift. The effect is due to the presence of an auxochrome or by the change of solvent. e.g. an auxochrome group like −OH or −OCH₃ causes absorption of the compound at longer wavelength. In alkaline medium, p-nitrophenol shows a red shift, because the negatively charged oxygen delocalizes more effectively than the unshared pair of electrons.',
-      ar: 'عندما تنتقل قمة الامتصاص (λmax) إلى طول موجي أطول تسمى إزاحة باثوكرومية أو حمراء. وسببها وجود أوكسوكروم أو تغيير المذيب. مثلاً مجموعة مثل −OH أو −OCH₃ تجعل المركب يمتص عند طول موجي أطول. في الوسط القاعدي يُظهر p-nitrophenol إزاحة حمراء، لأن الأوكسجين السالب الشحنة يوزّع إلكتروناته بفعالية أكبر من زوج الإلكترونات غير المشترك.',
+      en: 'When the absorption maximum (λmax) of a compound shifts to longer wavelength, it is known as bathochromic shift or red shift. The effect is due to the presence of an auxochrome or by the change of solvent. e.g. an auxochrome group like −OH or −OCH₃ causes absorption of the compound at longer wavelength. In alkaline medium, p-nitrophenol shows a red shift, because the negatively charged oxygen delocalizes more effectively than the unshared pair of electrons. pNP protonated form absorbs at 317 nm; pNP unprotonated form (anionic form) absorbs at 410 nm.',
+      ar: 'عندما تنتقل قمة الامتصاص (λmax) إلى طول موجي أطول تسمى إزاحة باثوكرومية أو حمراء. وسببها وجود أوكسوكروم أو تغيير المذيب. مثلاً مجموعة مثل −OH أو −OCH₃ تجعل المركب يمتص عند طول موجي أطول. في الوسط القاعدي يُظهر p-nitrophenol إزاحة حمراء، لأن الأوكسجين السالب الشحنة يوزّع إلكتروناته بفعالية أكبر من زوج الإلكترونات غير المشترك. الشكل البروتوني يمتص عند 317 nm، والشكل الأنيوني يمتص عند 410 nm.',
       deep: [
         '**Batho** باليوناني = عميق. "Red" لأن اللون الأحمر بطرف الـ λ الطويلة من الطيف المرئي.',
         'بالـ p-nitrophenol: الـ OH عنده lone pair، بس بالقاعدة يفقد البروتون ويصير **O⁻**. الشحنة السالبة الكاملة تدفع إلكترونات أكثر للحلقة ولحد مجموعة الـ NO₂ اللي تسحب. فيصير push–pull قوي جداً على طول الجزيء، والـ conjugation أقوى، والفجوة أصغر.',
         'عملياً المحلول يتحول من عديم اللون لأصفر بالقاعدة، لأن الامتصاص طلع من الـ UV للمنطقة المرئية.',
       ],
-      flow: ['p-nitrophenol + OH⁻  →  phenolate O⁻ (stronger donor than OH)  →  more delocalization to NO₂  →  gap ↓  →  red shift'],
+      flow: ['p-nitrophenol + OH⁻  →  phenolate O⁻ (stronger donor than OH)  →  more delocalization to NO₂  →  gap ↓  →  red shift', 'pNP protonated 317 nm  →  anionic 410 nm'],
       flags: [
         { kind: 'hy', text: 'قاعدة + phenol = red shift. لأن الـ O⁻ أقوى donor من الـ OH.' },
-        { kind: 'extra', text: 'قيم الـ p-nitrophenol مو بالسلايد: تقريباً 317 nm بالحامض و400 nm بالقاعدة (لون أصفر). استخدمتها بالمحاكي تحت.' },
+        { kind: 'hy', text: 'أرقام السلايد: الشكل البروتوني **317 nm**، والشكل الأنيوني (بالقاعدة) **410 nm**. الـ 410 بالمنطقة المرئية، ولهذا المحلول يصير أصفر.' },
       ],
     },
     {

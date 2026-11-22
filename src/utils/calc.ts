@@ -161,3 +161,29 @@ export function fmt(v: number, digits = 4): string {
   if (a !== 0 && (a < 1e-3 || a >= 1e6)) return v.toExponential(3);
   return String(Number(v.toPrecision(digits)));
 }
+
+export interface Dof {
+  total: number;
+  translation: number;
+  rotation: number;
+  vibrations: number;
+}
+
+/** Degrees of freedom: 3n total; 3n − 6 vibrations (nonlinear) or 3n − 5 (linear). */
+export function degreesOfFreedom(n: number, linear: boolean): Dof {
+  if (!Number.isInteger(n) || n < 2) throw new RangeError('n must be a whole number ≥ 2');
+  if (n === 2 && !linear) throw new RangeError('A diatomic molecule is always linear');
+  const rotation = linear ? 2 : 3;
+  return { total: 3 * n, translation: 3, rotation, vibrations: 3 * n - 3 - rotation };
+}
+
+export const ATOM_MASS: Record<string, number> = { H: 1.008, D: 2.014, C: 12.011, N: 14.007, O: 15.999, F: 18.998, S: 32.06, Cl: 35.45, Br: 79.904 };
+export const FORCE: Record<1 | 2 | 3, number> = { 1: 5e5, 2: 10e5, 3: 15e5 }; // dyne/cm (slide 53)
+
+/** Hooke's law stretching wavenumber (cm⁻¹); masses in amu are converted to g per atom. */
+export function hooke(m1: number, m2: number, f: number): { mu: number; wavenumber: number } {
+  if (!(m1 > 0 && m2 > 0 && f > 0)) throw new RangeError('Masses and force constant must be positive');
+  const muAmu = (m1 * m2) / (m1 + m2);
+  const muG = muAmu / NA;
+  return { mu: muAmu, wavenumber: Math.sqrt(f / muG) / (2 * Math.PI * C_CM) };
+}

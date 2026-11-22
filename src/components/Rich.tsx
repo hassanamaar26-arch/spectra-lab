@@ -5,7 +5,7 @@ import { Fragment, type ReactNode } from 'react';
  * the line order: every Latin/number/formula run is isolated in <bdi>.
  * Supports **bold** markup.
  */
-const FIRST = '(A-Za-z0-9σπλνεδΔµÅηθ¹²³⁴⁵⁶⁷⁸⁹⁰⁻⁺₀₁₂₃₄₅₆₇₈₉%';
+const FIRST = '(~≈A-Za-z0-9\u0370-\u03FFµÅ¹²³⁴⁵⁶⁷⁸⁹⁰⁻⁺₀₁₂₃₄₅₆₇₈₉%';
 const REST = FIRST + ' ).,:\\-+−–→←↔*/=\'’·×^~≈<>\\[\\]_⁄';
 // U+0304 (combining macron, as in ν̄) is matched as its own alternative.
 const LATIN = new RegExp(`(?:[${FIRST}]|\\u0304)(?:[${REST}]|\\u0304)*`, 'g');
@@ -24,7 +24,7 @@ function isolate(text: string, key: string): ReactNode[] {
     if (stop >= 0) run = run.slice(0, stop + 1);
     run = run.replace(/[\s.,:(]+$/, '');
     re.lastIndex = start + Math.max(run.length, 1);
-    if (!/[A-Za-z0-9σπλνεδΔµÅηθ]/.test(run)) continue;
+    if (!/[A-Za-z0-9\u0370-\u03FFµÅ]/.test(run)) continue;
     if (start > last) out.push(text.slice(last, start));
     out.push(
       <bdi key={`${key}-${i++}`} dir="ltr">

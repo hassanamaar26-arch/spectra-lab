@@ -37,7 +37,7 @@ src/
 | 0 | Project structure and engines | — | ✅ |
 | 1 | UV 1: Light and Beer-Lambert | 1–20 | ✅ |
 | 2 | UV 2: Transitions and shifts | 21–43 | ✅ |
-| 3 | IR 1: Theory, instrument, factors | 44–61 | ⏳ |
+| 3 | IR 1: Theory, instrument, factors | 44–61 | ✅ |
 | 4 | IR 2: Functional groups | 62–96 | ⏳ |
 | 5 | ¹H-NMR 1: Principle and chemical shift | 97–138 | ⏳ |
 | 6 | ¹H-NMR 2: Integration and splitting | 139–162 | ⏳ |

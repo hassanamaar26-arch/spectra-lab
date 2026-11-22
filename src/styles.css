@@ -191,3 +191,5 @@ th { color: var(--muted); font-weight: 600; }
 /* shift simulator */
 .sim { border-top: 1px solid var(--line); padding-top: 10px; display: grid; gap: 6px; }
 .spec .trace.before { stroke: var(--muted); stroke-dasharray: 5 4; }
+.legend-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-family: var(--mono); font-size: 0.85rem; text-align: left; }
+.legend-list i { display: inline-block; width: 18px; height: 3px; vertical-align: middle; margin-right: 6px; }

@@ -11,5 +11,7 @@ describe('Rich bidi isolation', () => {
   it('isolates Greek-only runs', () => expect(runs('فهي π→π*. خلص')).toEqual(['π→π*']));
   it('keeps parentheses balanced', () => expect(runs('تقصر (blue). خلص')).toEqual(['(blue)']));
   it('drops a dangling opening parenthesis', () => expect(runs('10–100 (ضعيف)')).toEqual(['10–100']));
+  it('any Greek letter (μ, ρ, ω) stays inside the run', () => expect(runs('اسمه reduced mass (μ) هنا')).toEqual(['reduced mass (μ)']));
+  it('approximate values in parentheses', () => expect(runs('القيم (~3600 و~3350 cm⁻¹) مو بالسلايد')).toEqual(['(~3600', '~3350 cm⁻¹)']));
   it('bold with a star inside', () => expect(renderToStaticMarkup(<Rich text="**n → π* بالـ solvent:** نص" />)).toContain('<b>'));
 });

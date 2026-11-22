@@ -44,7 +44,7 @@ export const quizUv2: Quiz = {
       q: 'p-Nitrophenol in alkaline medium shows a red shift because:',
       o: ['The ring loses aromaticity', 'The negatively charged oxygen delocalizes more effectively than the lone pair', 'The nitro group is removed', 'The solvent becomes non-polar'],
       a: 1,
-      why: 'الـ O⁻ أقوى donor من الـ OH، فيزيد الـ delocalization لحد الـ NO₂ وتصغر الفجوة.',
+      why: 'الـ O⁻ أقوى donor من الـ OH، فيزيد الـ delocalization لحد الـ NO₂ وتصغر الفجوة: من 317 إلى 410 nm.',
       slides: [28],
     },
     {

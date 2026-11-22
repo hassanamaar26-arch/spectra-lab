@@ -1,3 +1,3 @@
 import type { CalcId } from '../types';
 
-export const ALL_CALCS: CalcId[] = ['emr', 'tA', 'beer', 'ihd', 'nrule', 'nplus1', 'iso'];
+export const ALL_CALCS: CalcId[] = ['emr', 'tA', 'beer', 'dof', 'hooke', 'ihd', 'nrule', 'nplus1', 'iso'];

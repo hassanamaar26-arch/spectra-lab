@@ -8,6 +8,10 @@ import {
   pascal,
   percentTFromAbs,
   solveBeer,
+  degreesOfFreedom,
+  hooke,
+  ATOM_MASS,
+  FORCE,
 } from './calc';
 
 const close = (a: number, b: number, rel = 0.01) => expect(Math.abs(a - b) / Math.abs(b)).toBeLessThan(rel);
@@ -59,4 +63,28 @@ describe('IHD, Pascal, isotopes', () => {
   it('septet 1:6:15:20:15:6:1', () => expect(pascal(6)).toEqual([1, 6, 15, 20, 15, 6, 1]));
   it('Cl gives ~3:1', () => close(isotopePattern(1, 0)[1], 31.9, 0.02));
   it('Br gives ~1:1', () => close(isotopePattern(0, 1)[1], 98, 0.02));
+});
+
+describe('Unit 3: degrees of freedom (slide 51)', () => {
+  it('H₂O nonlinear → 3', () => expect(degreesOfFreedom(3, false).vibrations).toBe(3));
+  it('CO₂ linear → 4', () => expect(degreesOfFreedom(3, true).vibrations).toBe(4));
+  it('rotations 3 vs 2', () => {
+    expect(degreesOfFreedom(5, false).rotation).toBe(3);
+    expect(degreesOfFreedom(5, true).rotation).toBe(2);
+  });
+  it('rejects bad input', () => {
+    expect(() => degreesOfFreedom(1, true)).toThrow();
+    expect(() => degreesOfFreedom(2, false)).toThrow();
+  });
+});
+
+describe("Unit 3: Hooke's law (slide 53)", () => {
+  const k = (a: string, b: string, o: 1 | 2 | 3) => hooke(ATOM_MASS[a], ATOM_MASS[b], FORCE[o]).wavenumber;
+  it('C−H ≈ 3030 cm⁻¹', () => close(k('C', 'H', 1), 3030, 0.02));
+  it('C=O ≈ 1570 cm⁻¹ (worked example)', () => close(k('C', 'O', 2), 1570, 0.02));
+  it('order C≡C > C=C > C−C', () => {
+    expect(k('C', 'C', 3)).toBeGreaterThan(k('C', 'C', 2));
+    expect(k('C', 'C', 2)).toBeGreaterThan(k('C', 'C', 1));
+  });
+  it('isotope: C−D lower than C−H by ≈ √2', () => close(k('C', 'H', 1) / k('C', 'D', 1), 1.36, 0.02));
 });

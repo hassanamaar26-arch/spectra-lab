@@ -8,8 +8,10 @@ describe('Shift classification', () => {
     expect(s.to.l).toBe(265);
     expect(classifyShift(s.from, s.to)).toEqual(['hypsochromic']);
   });
-  it('p-nitrophenol + OH⁻ is bathochromic', () => {
+  it('p-nitrophenol + OH⁻ is bathochromic (slide 28: 317 → 410 nm)', () => {
     const s = SCENARIOS.find((x) => x.id === 'nitrophenol')!;
+    expect([s.from.l, s.to.l]).toEqual([317, 410]);
+    expect(s.extra).toBeUndefined();
     expect(classifyShift(s.from, s.to)).toEqual(['bathochromic']);
   });
   it('naphthalene → 2-methyl is hypochromic (19000 → 10250)', () => {
