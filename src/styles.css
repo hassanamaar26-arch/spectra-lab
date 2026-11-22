@@ -193,3 +193,7 @@ th { color: var(--muted); font-weight: 600; }
 .spec .trace.before { stroke: var(--muted); stroke-dasharray: 5 4; }
 .legend-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-family: var(--mono); font-size: 0.85rem; text-align: left; }
 .legend-list i { display: inline-block; width: 18px; height: 3px; vertical-align: middle; margin-right: 6px; }
+.spec .dot { fill: var(--surface); stroke: var(--accent); stroke-width: 2; }
+.spec .dot.on { fill: var(--accent); }
+.ir-hits li { border-inline-start: 3px solid var(--accent); padding-inline-start: 10px; }
+.spec svg.fit { min-width: 0; }

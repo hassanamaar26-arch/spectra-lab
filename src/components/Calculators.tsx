@@ -17,6 +17,7 @@ import {
   type EmrUnit,
 } from '../utils/calc';
 import { Rich } from './Rich';
+import { IrPeakFinder } from './IrTools';
 
 function num(s: string): number | undefined {
   if (s.trim() === '') return undefined;
@@ -244,7 +245,7 @@ function Hooke() {
   );
 }
 
-const REGISTRY: Record<CalcId, () => JSX.Element> = { tA: TA, beer: Beer, emr: Emr, ihd: Ihd, nrule: NRule, nplus1: NPlus1, iso: Iso, dof: Dof, hooke: Hooke };
+const REGISTRY: Record<CalcId, () => JSX.Element> = { tA: TA, beer: Beer, emr: Emr, ihd: Ihd, nrule: NRule, nplus1: NPlus1, iso: Iso, dof: Dof, hooke: Hooke, irpeak: IrPeakFinder };
 
 export function Calculators({ ids }: { ids: CalcId[] }) {
   return (

@@ -3,6 +3,7 @@ import type { Block, FlagKind } from '../types';
 import { Rich } from './Rich';
 import { ShiftSimulator } from './ShiftSimulator';
 import { IrFactors } from './IrFactors';
+import { CarbonylLadder } from './IrTools';
 
 const FLAG_LABEL: Record<FlagKind, string> = {
   hy: '⭐ HIGH YIELD',
@@ -104,6 +105,7 @@ export function BilingualBlock({ b, exam }: { b: Block; exam: boolean }) {
 
       {b.widget === 'shifts' && <ShiftSimulator />}
       {b.widget === 'irfactors' && <IrFactors />}
+      {b.widget === 'carbonyl' && <CarbonylLadder />}
 
       {b.worked && (
         <div className="worked">
