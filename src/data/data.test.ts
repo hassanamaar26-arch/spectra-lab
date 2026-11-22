@@ -39,6 +39,8 @@ describe('Quizzes are valid', () => {
         expect(q.a).toBeLessThan(q.o.length);
         expect(new Set(q.o).size).toBe(q.o.length);
         expect(q.why.length).toBeGreaterThan(10);
+        const l = LESSONS.find((x) => x.id === z.id);
+        if (l && q.slides) for (const n of q.slides) expect(n >= l.slides[0] && n <= l.slides[1]).toBe(true);
       }
     });
   }

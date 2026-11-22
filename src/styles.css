@@ -156,7 +156,7 @@ th { color: var(--muted); font-weight: 600; }
 .chip[aria-pressed='true'] { background: var(--ink); color: var(--bg); }
 .chip.solved { border-color: var(--good); color: var(--good); }
 .formula { font-family: var(--mono); text-align: left; }
-.spec { background: var(--bg); border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; }
+.spec { direction: ltr; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; overflow-x: auto; }
 .spec svg { display: block; min-width: 560px; width: 100%; height: auto; }
 .spec .grid { stroke: var(--line); }
 .spec .tick { font: 10.5px var(--mono); fill: var(--muted); }
@@ -187,3 +187,7 @@ th { color: var(--muted); font-weight: 600; }
 @media print {
   .rail, .tools, .foot, .strip { display: none; }
 }
+
+/* shift simulator */
+.sim { border-top: 1px solid var(--line); padding-top: 10px; display: grid; gap: 6px; }
+.spec .trace.before { stroke: var(--muted); stroke-dasharray: 5 4; }

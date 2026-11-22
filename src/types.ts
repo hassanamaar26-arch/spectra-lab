@@ -41,7 +41,11 @@ export interface Block {
   table?: Table;
   flags?: Flag[];
   worked?: Worked[];
+  /** Interactive widget rendered inside the block. */
+  widget?: WidgetId;
 }
+
+export type WidgetId = 'shifts';
 
 export type CalcId = 'tA' | 'beer' | 'emr' | 'ihd' | 'nrule' | 'nplus1' | 'iso';
 
